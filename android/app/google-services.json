@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "136317423167",
+    "project_id": "food-delivery-app-466fb",
+    "storage_bucket": "food-delivery-app-466fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136317423167:android:ccae1f4e6c454eb6ea328a",
+        "android_client_info": {
+          "package_name": "com.codvets.food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136317423167-2eq6dh0m8jhan2unbfh4jn5cfrsf0r29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9RU86GuBD-owdTBV3mkhVdTXYRMLpJeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136317423167-2eq6dh0m8jhan2unbfh4jn5cfrsf0r29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
