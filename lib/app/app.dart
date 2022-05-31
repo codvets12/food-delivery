@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/Routes/routes.dart';
-import 'package:food_delivery/controller/splash_controller.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+
+import '../Splash/controller/splash_controller.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);

@@ -84,8 +84,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/splash_controller.dart';
-
 class PaymentMethod extends StatelessWidget {
   PaymentMethod(
       {Key? key, required this.code, required this.name, required this.url})
