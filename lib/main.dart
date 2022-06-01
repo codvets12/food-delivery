@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'app/app.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // log("bug is in firebase initialieapp");
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  log("bug is in firebase initialieapp");
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
 
   runApp(MyApp());
 }

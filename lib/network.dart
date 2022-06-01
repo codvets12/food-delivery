@@ -19,8 +19,6 @@ class Network {
     required String password,
   }) async {
     try {
-      log("network class");
-
       final UserCredential creds =
           await firebaseAuth.createUserWithEmailAndPassword(
         email: model.email,

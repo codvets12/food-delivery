@@ -1,22 +1,33 @@
+import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/Auth/view/login.dart';
 
 import 'package:food_delivery/common/buttons.dart';
 import 'package:food_delivery/Auth/controller/auth_controller.dart';
 import 'package:get/get.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final AuthController controller = Get.put(AuthController());
+  final TextEditingController namecontroller = TextEditingController();
+  final TextEditingController emailcontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey();
+  final reg = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  @override
   Widget build(BuildContext context) {
-    final AuthController controller = Get.put(AuthController());
-    final TextEditingController namecontroller = TextEditingController();
-    final TextEditingController emailcontroller = TextEditingController();
-    final TextEditingController passwordcontroller = TextEditingController();
-    final GlobalKey<FormState> _formkey = GlobalKey();
+    log("registration screen");
+
     return Scaffold(
         body: SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -54,6 +65,13 @@ class RegisterScreen extends StatelessWidget {
                     decoration: const InputDecoration(
                         hintText: "Username",
                         hintStyle: TextStyle(color: Colors.grey)),
+                    validator: (val) {
+                      if (val == null) {
+                        "Enter your name";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 5,
@@ -63,15 +81,30 @@ class RegisterScreen extends StatelessWidget {
                     decoration: const InputDecoration(
                         hintText: "Email or Phone",
                         hintStyle: TextStyle(color: Colors.grey)),
+                    validator: (val) {
+                      if (!reg.hasMatch(val!)) {
+                        return "Email is incorrect";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   TextFormField(
-                      controller: passwordcontroller,
-                      decoration: const InputDecoration(
-                          hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.grey))),
+                    controller: passwordcontroller,
+                    decoration: const InputDecoration(
+                        hintText: "Password",
+                        hintStyle: TextStyle(color: Colors.grey)),
+                    validator: (val) {
+                      if (val!.length < 6) {
+                        return "Password is incorrect";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 18.0, vertical: 20),
@@ -90,10 +123,12 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   SocialButtons(
                       onTap: () {
-                        // AuthController.instance.Register(context,
-                        //     name: namecontroller.text,
-                        //     email: emailcontroller.text,
-                        //     password: passwordcontroller.text);
+                        if (_formkey.currentState!.validate()) {
+                          AuthController.instance.Register(context,
+                              name: namecontroller.text,
+                              email: emailcontroller.text,
+                              password: passwordcontroller.text);
+                        }
                       },
                       bgcolor: Colors.black,
                       label: "Sign Up"),
@@ -152,7 +187,9 @@ class RegisterScreen extends StatelessWidget {
                   width: 5,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.off(LoginScreen());
+                  },
                   child: const Text(
                     "Sign up",
                     style: TextStyle(
