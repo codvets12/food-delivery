@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'cart.dart';
-import 'first.dart';
+import 'product_show.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   const FoodDetailScreen({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.to(FirstScreen());
+                            Get.to(ProductShowScreen());
                           },
                           child: Container(
                             height: 50,

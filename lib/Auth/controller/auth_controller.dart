@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -8,7 +9,7 @@ import 'package:food_delivery/Auth/view/login.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/routes.dart';
-import '../../Product/view/Screens/first.dart';
+import '../../Product/view/Screens/product_show.dart';
 import '../model/user_model.dart';
 import '../../network.dart';
 import '../../network.dart';
@@ -17,6 +18,8 @@ import '../model/user_model.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
   final firebaseAuth = Network();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   int _selectedIndex = 0;
   int selectedindex = 0;
@@ -38,8 +41,10 @@ class AuthController extends GetxController {
         model: UserModel(name: name, email: email),
         password: password,
       );
-      Get.offAll(() => FirstScreen());
+      Get.offAll(() => ProductShowScreen());
     } on FirebaseAuthException catch (error) {
+      //log("controller class and register funtion");
+      log(error.toString());
       throw Get.snackbar("About authenticaion", "message for user",
           snackPosition: SnackPosition.BOTTOM,
           titleText: Text("Account creataion failed"),
@@ -51,7 +56,7 @@ class AuthController extends GetxController {
       {required String email, required String password}) {
     try {
       firebaseAuth.Login(password: password, email: email);
-      Get.offAll(() => FirstScreen());
+      Get.offAll(() => ProductShowScreen());
     } on FirebaseAuthException catch (error) {
       print("error on login in provider class");
       throw FirebaseAuthException(code: error.code, message: error.message);
