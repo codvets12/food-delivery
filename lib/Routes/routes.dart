@@ -2,6 +2,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../Auth/view/login.dart';
 import '../Auth/view/register.dart';
+import '../Auth/view/resert_password.dart';
 import '../Product/view/Screens/cart.dart';
 import '../Product/view/Screens/credit_card.dart';
 
@@ -21,6 +22,7 @@ class Routes {
   static const String fooddetailscreen = "/FoodDetailScreen";
   static const String locationscreen = "/LocationScreen";
   static const String ordercompletescreen = "/OrderCompleteScreen";
+  static const String resertpasswordscreen = "/ResertPasswordScreen";
   static List<GetPage> getPages = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
     GetPage(
@@ -33,10 +35,10 @@ class Routes {
     GetPage(name: creditcardscreen, page: () => const CreditCard()),
     GetPage(name: fooddetailscreen, page: () => const FoodDetailScreen()),
     GetPage(name: locationscreen, page: () => const LocationScreen()),
-    GetPage(name: ordercompletescreen, page: () => const OrderCompleteScreen())
-    // GetPage(
-    //   name: createFeedScreen,
-    //   page: () => CreateFeedScreen(),
-    // ),
+    GetPage(name: ordercompletescreen, page: () => const OrderCompleteScreen()),
+    GetPage(
+      name: resertpasswordscreen,
+      page: () => ResertPasswordScreen(),
+    ),
   ];
 }

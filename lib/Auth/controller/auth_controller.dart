@@ -66,4 +66,12 @@ class AuthController extends GetxController {
   void Signout(BuildContext context) {
     Get.to(LoginScreen());
   }
+
+  Future<void> ResertPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log("problem is in main funtion");
+    }
+  }
 }

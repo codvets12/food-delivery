@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/Auth/controller/auth_controller.dart';
+import 'package:food_delivery/Auth/view/resert_password.dart';
 
 import 'package:food_delivery/common/buttons.dart';
 
@@ -90,7 +91,9 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.off(ResertPasswordScreen());
+                          },
                           child: const Text(
                             "Forget Password",
                             style: TextStyle(
