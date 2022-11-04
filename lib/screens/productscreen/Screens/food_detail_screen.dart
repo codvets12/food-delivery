@@ -1,12 +1,7 @@
-import 'package:carousel_indicator/carousel_indicator.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import 'cart.dart';
-import 'product_show.dart';
+import '../../../Routes/routes.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   const FoodDetailScreen({Key? key}) : super(key: key);
@@ -49,7 +44,8 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.to(ProductShowScreen());
+                            Navigator.pushNamed(context, Routes.productshowscreen);
+                            
                           },
                           child: Container(
                             height: 50,
@@ -57,12 +53,12 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Center(
+                            child:const Center(
                               child: Icon(Icons.arrow_back),
                             ),
                           ),
                         ),
-                        Text(
+                    const    Text(
                           "Details",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
@@ -102,7 +98,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                               (item) => Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.all(
+                                  borderRadius:const BorderRadius.all(
                                     Radius.circular(30.0),
                                   ),
                                   child: Stack(
@@ -126,7 +122,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                           return Container(
                             width: 10.0,
                             height: 10.0,
-                            margin: EdgeInsets.symmetric(
+                            margin:const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 2.0),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -241,7 +237,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [
+                                children:const [
                                   Text(
                                     "it is taste food ",
                                     style: TextStyle(color: Colors.grey),
@@ -285,7 +281,8 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                       ),
                                     ),
                                     onTap: () {
-                                      Get.off(CartScreen());
+                                      Navigator.pushNamed(context, Routes.cartscreen);
+                                  
                                     },
                                   )
                                 ],

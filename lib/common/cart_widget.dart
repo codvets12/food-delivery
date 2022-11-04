@@ -68,9 +68,9 @@ class cart_widget extends StatelessWidget {
                   children: [
                     Text(
                       vegetablename,
-                      style: TextStyle(fontSize: 18),
+                      style:const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(
+                  const  SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -79,28 +79,28 @@ class cart_widget extends StatelessWidget {
                           icon,
                           color: Colors.yellow,
                         ),
-                        SizedBox(
+                     const   SizedBox(
                           width: 10,
                         ),
                         Text(rating ?? ""),
-                        SizedBox(
+                    const    SizedBox(
                           width: 15,
                         ),
                         Text(
                           Reviews ?? "",
-                          style: TextStyle(
+                          style:const TextStyle(
                               color: const Color(0xff888888),
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                    SizedBox(
+                  const  SizedBox(
                       height: 15,
                     ),
                     Text(
                       price,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                         const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     )
                   ],
                 ),
@@ -114,7 +114,7 @@ class cart_widget extends StatelessWidget {
                     Row(
                       children: [
                         Icon(removeicon),
-                        SizedBox(
+                      const  SizedBox(
                           width: 3,
                         ),
                         Text(number),

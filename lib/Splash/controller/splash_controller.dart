@@ -1,12 +1,16 @@
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:food_delivery/screens/authenticationscreen/login.dart';
 
-import '../../Routes/routes.dart';
 
-class SplashController extends GetxController {
+class SplashProvider with ChangeNotifier {
   bool ischecked = false;
-  Future<void> splashInit() async {
+  Future<void> splashInit(context) async {
     await Future.delayed(const Duration(seconds: 1), () {
-      Get.off(Routes.loginscreen);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>
+    LoginScreen()
+   
+    ));
     });
   }
 

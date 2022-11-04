@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../Routes/routes.dart';
 
-import 'package:get/get.dart';
-
-import 'order_complete_screen.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({Key? key}) : super(key: key);
@@ -18,7 +16,8 @@ class LocationScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
               child: GestureDetector(
                 onTap: () {
-                  Get.to(OrderCompleteScreen());
+                  Navigator.pushNamed(context, Routes.ordercompletescreen);
+              
                 },
                 child: Container(
                   height: 50,

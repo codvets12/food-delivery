@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-
 import 'package:food_delivery/common/buttons.dart';
-import 'package:get/get.dart';
-
+import '../../../Routes/routes.dart';
 import '../../../common/cart_widget.dart';
-import 'credit_card.dart';
-import 'food_detail_screen.dart';
+
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -28,7 +25,8 @@ class CartScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(FoodDetailScreen());
+                        Navigator.pushNamed(context, Routes.fooddetailscreen);
+                  
                       },
                       child: Container(
                         height: 50,
@@ -36,12 +34,12 @@ class CartScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
-                        child: Center(
+                        child:const Center(
                           child: Icon(Icons.arrow_back),
                         ),
                       ),
                     ),
-                    Text(
+                 const   Text(
                       "Cart",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -61,7 +59,7 @@ class CartScreen extends StatelessWidget {
                   addicon: Icons.add_circle,
                   removeicon: Icons.remove_circle,
                   number: "2"),
-              SizedBox(
+            const  SizedBox(
                 height: 10,
               ),
               cart_widget(
@@ -72,7 +70,7 @@ class CartScreen extends StatelessWidget {
                   addicon: Icons.add_circle,
                   removeicon: Icons.remove_circle,
                   number: "2"),
-              SizedBox(
+           const   SizedBox(
                 height: 10,
               ),
               cart_widget(
@@ -83,7 +81,7 @@ class CartScreen extends StatelessWidget {
                   addicon: Icons.add_circle,
                   removeicon: Icons.remove_circle,
                   number: "2"),
-              SizedBox(
+           const   SizedBox(
                 height: 10,
               ),
               cart_widget(
@@ -114,7 +112,8 @@ class CartScreen extends StatelessWidget {
               ),
               SocialButtons(
                   onTap: () {
-                    Get.off(CreditCard());
+                    Navigator.pushNamed(context, Routes.creditcardscreen);
+                  
                   },
                   bgcolor: Colors.black,
                   label: "Check Out"),

@@ -1,17 +1,8 @@
-import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/Auth/controller/auth_controller.dart';
-import 'package:food_delivery/Auth/view/login.dart';
-
 import 'package:food_delivery/common/buttons.dart';
+import '../../Routes/routes.dart';
 
-import 'package:food_delivery/Auth/view/register.dart';
-import 'package:get/get.dart';
-
-import '../../Product/view/Screens/product_show.dart';
 
 class ResertPasswordScreen extends StatefulWidget {
   const ResertPasswordScreen({Key? key}) : super(key: key);
@@ -33,7 +24,8 @@ class _ResertPasswordScreenState extends State<ResertPasswordScreen> {
           backgroundColor: Colors.white,
           leading: IconButton(
               onPressed: () {
-                Get.to(LoginScreen());
+                Navigator.pushNamed(context,Routes.loginscreen);
+                
               },
               icon: const Icon(
                 Icons.arrow_back,
@@ -99,49 +91,49 @@ class _ResertPasswordScreenState extends State<ResertPasswordScreen> {
                         ),
                         SocialButtons(
                             onTap: () {
-                              try {
-                                if (_formkey.currentState!.validate()) {
-                                  print(_formkey);
-                                  AuthController.instance.ResertPassword(
-                                      emailcontroller.text.trim());
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          backgroundColor: Colors.black38,
-                                          title: const Center(
-                                            child: Text(
-                                              'Welcome',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          content: const Text(
-                                              'New Password send on your email',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold)),
-                                          actions: [
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                Get.offAll(
-                                                    ResertPasswordScreen());
-                                              }, // function used to perform after pressing the button
-                                              child: Text('OK'),
-                                            ),
-                                          ],
-                                        );
-                                      });
+                              // try {
+                              //   if (_formkey.currentState!.validate()) {
+                              //     print(_formkey);
+                              //     Provider.of<AuthenticationProvider>(context).ResertPassword(
+                              //         emailcontroller.text.trim());
+                              //     showDialog(
+                              //         context: context,
+                              //         builder: (context) {
+                              //           return AlertDialog(
+                              //             shape: RoundedRectangleBorder(
+                              //                 borderRadius:
+                              //                     BorderRadius.circular(20)),
+                              //             backgroundColor: Colors.black38,
+                              //             title: const Center(
+                              //               child: Text(
+                              //                 'Welcome',
+                              //                 style: TextStyle(
+                              //                     color: Colors.white,
+                              //                     fontWeight: FontWeight.bold),
+                              //               ),
+                              //             ),
+                              //             content: const Text(
+                              //                 'New Password send on your email',
+                              //                 style: TextStyle(
+                              //                     color: Colors.white,
+                              //                     fontWeight: FontWeight.bold)),
+                              //             actions: [
+                              //               ElevatedButton(
+                              //                 onPressed: () {
+                              //                   Get.offAll(
+                              //                       ResertPasswordScreen());
+                              //                 }, // function used to perform after pressing the button
+                              //                 child: Text('OK'),
+                              //               ),
+                              //             ],
+                              //           );
+                              //         });
 
-                                  // Get.offAll(LoginScreen());
-                                }
-                              } on FirebaseAuthException catch (e) {
-                                print(e);
-                              }
+                              //     // Get.offAll(LoginScreen());
+                              //   }
+                              // } on FirebaseAuthException catch (e) {
+                              //   print(e);
+                              // }
                             },
                             bgcolor: Colors.black,
                             label: "Resert Password"),

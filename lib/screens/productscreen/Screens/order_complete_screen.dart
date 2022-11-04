@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-
 import 'package:food_delivery/common/buttons.dart';
-import 'package:get/get.dart';
+import '../../../Routes/routes.dart';
 
-import 'credit_card.dart';
-import 'location_screen.dart';
 
 class OrderCompleteScreen extends StatelessWidget {
   const OrderCompleteScreen({Key? key}) : super(key: key);
@@ -17,7 +14,7 @@ class OrderCompleteScreen extends StatelessWidget {
         body: Stack(
           children: [
             Align(
-              alignment: Alignment(0, -1.5),
+              alignment:const Alignment(0, -1.5),
               child: Container(
                 height: 600,
                 width: 600,
@@ -27,7 +24,7 @@ class OrderCompleteScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(0.1, -0.35),
+              alignment:const Alignment(0.1, -0.35),
               child: Container(
                 height: 350,
                 width: 350,
@@ -37,7 +34,7 @@ class OrderCompleteScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(0.01, -0.28),
+              alignment:const Alignment(0.01, -0.28),
               child: Container(
                 height: 250,
                 width: 250,
@@ -47,7 +44,7 @@ class OrderCompleteScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(0.01, -0.2),
+              alignment:const Alignment(0.01, -0.2),
               child: Container(
                 height: 150,
                 width: 150,
@@ -79,20 +76,22 @@ class OrderCompleteScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(0, 0.8),
+              alignment:const Alignment(0, 0.8),
               child: SocialButtons(
                 onTap: () {
-                  Get.off(LocationScreen());
+                  Navigator.pushNamed(context, Routes.locationscreen);
+                
                 },
                 bgcolor: Colors.black,
                 label: "Track Your Order",
               ),
             ),
             Align(
-                alignment: Alignment(0, 0.9),
+                alignment:const Alignment(0, 0.9),
                 child: GestureDetector(
                     onTap: () {
-                      Get.to(CreditCard());
+                      Navigator.pushNamed(context, Routes.creditcardscreen);
+                    
                     },
                     child: const Text(
                       "Back to Home",

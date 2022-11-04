@@ -1,13 +1,14 @@
-import 'dart:developer';
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/Auth/view/login.dart';
+import 'package:food_delivery/model/user_model.dart';
+
 
 import 'package:food_delivery/common/buttons.dart';
-import 'package:food_delivery/Auth/controller/auth_controller.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
+
+import '../../Routes/routes.dart';
+import '../../network.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -17,17 +18,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final AuthController controller = Get.put(AuthController());
-  final TextEditingController namecontroller = TextEditingController();
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController passwordcontroller = TextEditingController();
-  final GlobalKey<FormState> _formkey = GlobalKey();
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  GlobalKey<FormState> _formkey = GlobalKey();
+  String _selectedType = 'seller';
+
+  // Group Value for Radio Button.
+  int id = 1;
   final reg = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
   @override
   Widget build(BuildContext context) {
-    log("registration screen");
-
     return Scaffold(
         body: SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -38,8 +41,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             padding: const EdgeInsets.symmetric(vertical: 50.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(image: AssetImage("assets/authn.png")),
+              children:const [
+                 Image(image: AssetImage("assets/authn.png")),
               ],
             ),
           ),
@@ -121,26 +124,97 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                   ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Radio(
+                                    value: "seller",
+                                    groupValue: _selectedType,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _selectedType = value!;
+                                        print(_selectedType);
+                                      });
+                                    }),
+                                const Expanded(
+                                  child: Text(
+                                    'Seller',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                )
+                              ],
+                            ),
+                            flex: 1,
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Radio(
+                                    value: "buyer",
+                                    groupValue: _selectedType,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _selectedType = value!;
+                                        print(_selectedType);
+                                      });
+                                    }),
+                                const Expanded(
+                                    child: Text(
+                                  'Buyer',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ))
+                              ],
+                            ),
+                            flex: 1,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   SocialButtons(
                       onTap: () {
                         if (_formkey.currentState!.validate()) {
-                          AuthController.instance.Register(context,
-                              name: namecontroller.text,
-                              email: emailcontroller.text,
-                              password: passwordcontroller.text);
+                          Provider.of<AuthenticationProvider>(context,
+                                  listen: false)
+                              .Register(context,
+                                  model: UserModel(
+                                      email: emailcontroller.text.trim(),
+                                      name: namecontroller.text.trim(),
+                                      usertype: _selectedType),
+                                  password: passwordcontroller.text.trim());
+                          print(namecontroller.text);
+                          print(emailcontroller.text);
+                          print(passwordcontroller.text);
+                          print(_selectedType);
+
+                          // name: namecontroller.text.trim(),
+                          // email: emailcontroller.text.trim(),
+
                         }
                       },
                       bgcolor: Colors.black,
                       label: "Sign Up"),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Text("or connet with"),
-                  SizedBox(
+                  const Text("or connet with"),
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SocialButtons(
                         ischecked: true,
@@ -148,7 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         url: "assets/facebook.png",
                         bgcolor: Colors.black12,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       SocialButtons(
@@ -188,7 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.off(LoginScreen());
+                    Navigator.pushNamed(context, Routes.loginscreen);
                   },
                   child: const Text(
                     "Sign up",

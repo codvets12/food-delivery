@@ -1,15 +1,17 @@
-import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/screens/sellerscreen/seller_home.dart';
 
-import '../Auth/view/login.dart';
-import '../Auth/view/register.dart';
-import '../Auth/view/resert_password.dart';
-import '../Product/view/Screens/cart.dart';
-import '../Product/view/Screens/credit_card.dart';
 
-import '../Product/view/Screens/food_detail_screen.dart';
-import '../Product/view/Screens/location_screen.dart';
-import '../Product/view/Screens/order_complete_screen.dart';
-import '../Product/view/Screens/product_show.dart';
+import '../screens/authenticationscreen/login.dart';
+import '../screens/authenticationscreen/register.dart';
+import '../screens/authenticationscreen/resert_password.dart';
+import '../screens/productscreen/Screens/cart.dart';
+import '../screens/productscreen/Screens/credit_card.dart';
+
+import '../screens/productscreen/Screens/food_detail_screen.dart';
+import '../screens/productscreen/Screens/location_screen.dart';
+import '../screens/productscreen/Screens/order_complete_screen.dart';
+import '../screens/productscreen/Screens/product_show.dart';
 import '../Splash/view/splash_screen.dart';
 
 class Routes {
@@ -23,22 +25,23 @@ class Routes {
   static const String locationscreen = "/LocationScreen";
   static const String ordercompletescreen = "/OrderCompleteScreen";
   static const String resertpasswordscreen = "/ResertPasswordScreen";
-  static List<GetPage> getPages = [
-    GetPage(name: splashScreen, page: () => const SplashScreen()),
-    GetPage(
-      name: loginscreen,
-      page: () => const LoginScreen(),
-    ),
-    GetPage(name: registerscreen, page: () => const RegisterScreen()),
-    GetPage(name: productshowscreen, page: () => ProductShowScreen()),
-    GetPage(name: cartscreen, page: () => const CartScreen()),
-    GetPage(name: creditcardscreen, page: () => const CreditCard()),
-    GetPage(name: fooddetailscreen, page: () => const FoodDetailScreen()),
-    GetPage(name: locationscreen, page: () => const LocationScreen()),
-    GetPage(name: ordercompletescreen, page: () => const OrderCompleteScreen()),
-    GetPage(
-      name: resertpasswordscreen,
-      page: () => ResertPasswordScreen(),
-    ),
-  ];
+  static const String sellerhomescreen = "/SellerHome";
+
+
+
+
+  static Map<String,Widget Function(BuildContext)>myRoutes(BuildContext context)=>{
+    splashScreen:(context)=> const SplashScreen(),
+    loginscreen:(context)=> const LoginScreen(),
+    registerscreen:(context)=> const RegisterScreen(),
+    productshowscreen:(context)=>const ProductShowScreen(),
+    cartscreen:(context)=>const CartScreen(),
+    creditcardscreen:(context)=>const CreditCard(),
+    fooddetailscreen:(context)=>const FoodDetailScreen(),
+    locationscreen:(context)=>const LocationScreen(),
+    ordercompletescreen:(context)=>const OrderCompleteScreen(),
+    resertpasswordscreen:(context)=>const ResertPasswordScreen(),
+    sellerhomescreen:(context)=> ProductEntry()
+    
+  };
 }

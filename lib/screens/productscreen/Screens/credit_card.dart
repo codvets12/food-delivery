@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:food_delivery/common/buttons.dart';
 import 'package:food_delivery/common/payment_method.dart';
-import 'package:get/get.dart';
+import '../../../Routes/routes.dart';
 
-import 'cart.dart';
-import 'order_complete_screen.dart';
 
 class CreditCard extends StatefulWidget {
   const CreditCard({Key? key}) : super(key: key);
@@ -33,7 +30,8 @@ class _CreditCardState extends State<CreditCard> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(CartScreen());
+                          Navigator.pushNamed(context, Routes.cartscreen);
+                        
                         },
                         child: Container(
                           height: 50,
@@ -85,7 +83,7 @@ class _CreditCardState extends State<CreditCard> {
                         ],
                       ),
                       Column(
-                        children: [Icon(Icons.edit)],
+                        children: const[Icon(Icons.edit)],
                       )
                     ],
                   ),
@@ -248,19 +246,20 @@ class _CreditCardState extends State<CreditCard> {
                     code: "**** **5824 58741",
                     name: "visa Pay",
                     url: "assets/paypal 1.png"),
-                SizedBox(
+          const      SizedBox(
                   height: 20,
                 ),
                 PaymentMethod(
                     code: "**** **5824 58741",
                     name: "visa Pay",
                     url: "assets/paypal 1.png"),
-                SizedBox(
+           const     SizedBox(
                   height: 20,
                 ),
                 SocialButtons(
                   onTap: () {
-                    Get.off(OrderCompleteScreen());
+                    Navigator.pushNamed(context, Routes.ordercompletescreen);
+                    
                   },
                   bgcolor: Colors.black,
                   label: "PAYMENT",

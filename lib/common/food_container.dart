@@ -46,14 +46,14 @@ class FoodContainer extends StatelessWidget {
                     Text(
                       foodname,
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                       const   TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
               ),
               Text(
                 description,
-                style: TextStyle(color: Colors.grey, fontSize: 14),
+                style:const TextStyle(color: Colors.grey, fontSize: 14),
               ),
               Padding(
                 padding:
@@ -64,7 +64,7 @@ class FoodContainer extends StatelessWidget {
                     Text(
                       rate,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        const  TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     CircleAvatar(
                       backgroundColor: Colors.black,

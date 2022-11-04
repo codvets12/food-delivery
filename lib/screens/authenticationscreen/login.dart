@@ -1,14 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/Auth/controller/auth_controller.dart';
-import 'package:food_delivery/Auth/view/resert_password.dart';
-
 import 'package:food_delivery/common/buttons.dart';
-
-import 'package:food_delivery/Auth/view/register.dart';
-import 'package:get/get.dart';
-
-import '../../Product/view/Screens/product_show.dart';
+import 'package:provider/provider.dart';
+import '../../Routes/routes.dart';
+import '../../network.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,8 +24,8 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 50.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(image: AssetImage("assets/authn.png")),
+              children:const [
+                 Image(image: AssetImage("assets/authn.png")),
               ],
             ),
           ),
@@ -46,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+   const       SizedBox(
             height: 15,
           ),
           Padding(
@@ -57,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: emailcontroller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: "Email or Phone",
                         hintStyle: TextStyle(color: Colors.grey, fontSize: 17)),
                     validator: (val) {
@@ -72,8 +66,9 @@ class LoginScreen extends StatelessWidget {
                     height: 10,
                   ),
                   TextFormField(
+                    obscureText: true,
                     controller: passwordcontroller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: "Password",
                         hintStyle: TextStyle(fontSize: 17, color: Colors.grey)),
                     validator: (val) {
@@ -92,7 +87,8 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.off(ResertPasswordScreen());
+                            Navigator.pushNamed(
+                                context, Routes.resertpasswordscreen);
                           },
                           child: const Text(
                             "Forget Password",
@@ -107,11 +103,18 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SocialButtons(
                       onTap: () {
-                        if (_formkey.currentState!.validate()) {
-                          AuthController.instance.Login(context,
-                              email: emailcontroller.text,
-                              password: passwordcontroller.text);
-                        }
+                        Provider.of<AuthenticationProvider>(context,
+                                listen: false)
+                            .Login(context,
+                                email: emailcontroller.text.trim(),
+                                password: passwordcontroller.text.trim());
+                        // if (_formkey.currentState!.validate()) {
+                        //   Provider.of<AuthenticationProvider>(context,
+                        //           listen: false)
+                        //       .Login(context,
+                        //           email: emailcontroller.text.trim(),
+                        //           password: passwordcontroller.text.trim());
+                        // }
                       },
                       bgcolor: Colors.black,
                       label: "Sign in"),
@@ -172,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.off(RegisterScreen());
+                            Navigator.pushNamed(context, Routes.registerscreen);
                           },
                           child: const Text(
                             "Sign up",

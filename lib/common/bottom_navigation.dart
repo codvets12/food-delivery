@@ -40,7 +40,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   child: StreamBuilder(builder: (context, snapshot) {
                     int cartLength = 0;
                     if (snapshot.data != null) {
-                      WidgetsBinding.instance!
+                      WidgetsBinding.instance
                           .addPostFrameCallback((timeStamp) {});
                     }
 
